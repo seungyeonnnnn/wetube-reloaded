@@ -1,4 +1,11 @@
 extends base
 
 block content
-    h1 Edit Video!
+    h4 Change Title of video
+    //- action(URL) 등 브라우저가 버튼을 눌렀을 때 하는 행동을 정의
+    //- action은 현재 URL이 default이므로 적지 않아도 됨
+    //- 여기선 get과 동일한 URL로 진행하므로 POST로 변경
+    //- default 작동은 GET
+    form(method="POST", action="/videos/edit")
+        input(name="title", placeholder="Video Title", value=video.title, required)
+        input(value="Save", type="submit")
