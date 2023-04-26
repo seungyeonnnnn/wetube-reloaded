@@ -16,6 +16,8 @@ app.set("view engine", "pug"); // >npm i pug 설치 후 추가
 app.set("views", process.cwd() + "/src/views"); // views directories 위치 이동
 app.use(logger);
 app.use(express.urlencoded({ extended: true })); //express app이 form의 value들을 이해할 수 있도록 함 & JS 형식으로 변형
+// app.use(express.text()); //Front_JS의 fetch text를 Back에서 이해할 수 있도록 but 하나만 주고 받을 떄
+app.use(express.json()); //Front_JS의 fetch text를 Back에서 이해할 수 있도록 but 하나만 주고 받을 떄
 
 app.use(
   session({
