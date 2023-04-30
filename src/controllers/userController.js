@@ -155,10 +155,11 @@ export const postEdit = async (req, res) => {
   // 위 코드는 ES6용으로 아래와 동일함
   // const id = req.session.user.id;
   // const { name, email, username, location } = req.body;
+  const isKoyeb = process.env.NODE_ENV === "production";
   const updatedUser = await User.findByIdAndUpdate(
     _id,
     {
-      avatarUrl: file ? file.path : avatarUrl,
+      avatarUrl: file ? (isKoyeb ? file.location : file.path) : avatarUrl,
       name,
       email,
       username,
