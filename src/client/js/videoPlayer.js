@@ -9,7 +9,7 @@ const video = document.querySelector("video");
 // const timeline = document.getElementById("timeline");
 // const fullScreenBtn = document.getElementById("fullScreen");
 // const fullScreenIcon = fullScreenBtn.querySelector("i");
-// const videoContainer = document.getElementById("videoContainer");
+const videoContainer = document.getElementById("videoContainer");
 // const videoControls = document.getElementById("videoControls");
 
 // let controlsTimeout = null;
