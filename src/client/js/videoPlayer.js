@@ -1,16 +1,16 @@
 const video = document.querySelector("video");
-const playBtn = document.getElementById("play");
-const playBtnIcon = playBtn.querySelector("i");
-const muteBtn = document.getElementById("mute");
-const muteBtnIcon = muteBtn.querySelector("i");
-const volumeRange = document.getElementById("volume");
-const currentTime = document.getElementById("currentTime");
-const totalTitme = document.getElementById("totalTime");
-const timeline = document.getElementById("timeline");
-const fullScreenBtn = document.getElementById("fullScreen");
-const fullScreenIcon = fullScreenBtn.querySelector("i");
-const videoContainer = document.getElementById("videoContainer");
-const videoControls = document.getElementById("videoControls");
+// const playBtn = document.getElementById("play");
+// const playBtnIcon = playBtn.querySelector("i");
+// const muteBtn = document.getElementById("mute");
+// const muteBtnIcon = muteBtn.querySelector("i");
+// const volumeRange = document.getElementById("volume");
+// const currentTime = document.getElementById("currentTime");
+// const totalTitme = document.getElementById("totalTime");
+// const timeline = document.getElementById("timeline");
+// const fullScreenBtn = document.getElementById("fullScreen");
+// const fullScreenIcon = fullScreenBtn.querySelector("i");
+// const videoContainer = document.getElementById("videoContainer");
+// const videoControls = document.getElementById("videoControls");
 
 let controlsTimeout = null;
 let controlsMovementTimeout = null;
@@ -68,8 +68,9 @@ const formatTime = (seconds) =>
   new Date(seconds * 1000).toISOString().substring(14, 19);
 
 const handleLoadedMetadata = () => {
-  totalTitme.innerText = formatTime(Math.floor(video.duration));
-  timeline.max = Math.floor(video.duration);
+  // totalTitme.innerText = formatTime(Math.floor(video.duration));
+  // timeline.max = Math.floor(video.duration);
+  console.log("Loaded");
 };
 
 const handleTimeUpdate = () => {
@@ -116,18 +117,19 @@ const handleMouseLeave = () => {
 
 const handleEnded = () => {
   const { id } = videoContainer.dataset;
+  console.log("Ended");
   fetch(`/api/videos/${id}/view`, { method: "POST" });
 };
 
-playBtn.addEventListener("click", handlePlayClick);
-muteBtn.addEventListener("click", handleMute);
-volumeRange.addEventListener("input", handleVolumeChange);
-// video.addEventListener("canplay", handleLoadedMetadata);
+// playBtn.addEventListener("click", handlePlayClick);
+// muteBtn.addEventListener("click", handleMute);
+// volumeRange.addEventListener("input", handleVolumeChange);
+// // video.addEventListener("canplay", handleLoadedMetadata);
 video.addEventListener("loadeddata", handleLoadedMetadata);
-video.addEventListener("timeupdate", handleTimeUpdate);
+// video.addEventListener("timeupdate", handleTimeUpdate);
 video.addEventListener("ended", handleEnded);
-video.addEventListener("click", handleScreenClick);
-videoContainer.addEventListener("mousemove", handleMouseMove);
-videoContainer.addEventListener("mouseleave", handleMouseLeave);
-timeline.addEventListener("input", handleTimelineChange);
-fullScreenBtn.addEventListener("click", handleFullscreen);
+// video.addEventListener("click", handleScreenClick);
+// videoContainer.addEventListener("mousemove", handleMouseMove);
+// videoContainer.addEventListener("mouseleave", handleMouseLeave);
+// timeline.addEventListener("input", handleTimelineChange);
+// fullScreenBtn.addEventListener("click", handleFullscreen);
