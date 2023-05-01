@@ -11,15 +11,17 @@ const s3 = new aws.S3({
 
 const isKoyeb = process.env.NODE_ENV === "production";
 
-const s3ImageUploader = multerS3({
+const s3AvatarUploader = multerS3({
   s3: s3,
-  bucket: "wetubeebucket/images",
+  bucket: isKoyeb
+    ? "wetubeebucket/koyeb/avatars"
+    : "wetubeebucket/local/avatars",
   acl: "public-read",
 });
 
 const s3VideoUploader = multerS3({
   s3: s3,
-  bucket: "wetubeebucket/videos",
+  bucket: isKoyeb ? "wetubeebucket/koyeb/videos" : "wetubeebucket/local/videos",
   acl: "public-read",
 });
 
@@ -54,12 +56,13 @@ export const avatarUpload = multer({
   limits: {
     fileSize: 3000000,
   },
-  storage: isKoyeb ? s3ImageUploader : undefined,
+  // storage: isKoyeb ? s3AvatarUploader : undefined,
+  storage: s3AvatarUploader,
 });
 export const videoUpload = multer({
   dest: "uploads/videos/",
   limits: {
     fileSize: 10000000,
   },
-  storage: isKoyeb ? s3VideoUploader : undefined,
+  storage: s3VideoUploader,
 });
