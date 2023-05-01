@@ -39,7 +39,7 @@ export const getEdit = async (req, res) => {
     return res.status(404).render("404", { pageTitle: "Video not found." });
   }
   if (String(video.owner) !== String(req.session.user._id)) {
-    req.flash("error", "Not authorized");
+    // req.flash("error", "Not authorized");
     return res.status(403).redirect("/");
   }
   return res.render("edit", { pageTitle: `Edit: ${video.title}`, video });
@@ -53,7 +53,7 @@ export const postEdit = async (req, res) => {
     return res.render("404", { pageTitle: "Video not found." });
   }
   if (String(video.owner) !== String(req.session.user._id)) {
-    req.flash("error", "You are not the owner of the video");
+    // req.flash("error", "You are not the owner of the video");
     return res.status(403).redirect("/");
   }
   await Video.findByIdAndUpdate(id, {
@@ -61,7 +61,7 @@ export const postEdit = async (req, res) => {
     description,
     hashtags: Video.formatHashtags(hashtags),
   });
-  req.flash("success", "Changes saved");
+  // req.flash("success", "Changes saved");
   return res.redirect(`/videos/${id}`);
 };
 
